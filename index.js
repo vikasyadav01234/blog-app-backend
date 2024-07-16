@@ -1,11 +1,21 @@
 const express = require("express");
 const app = express();
 
+//const router = express.Router()
 require("dotenv").config();
 const PORT = process.env.PORT || 3000;
 //middleware
 app.use(express.json());
-app.listen(3000,() =>{
-    console.log("Server is running on port 3000");
+
+const blog = require("./routes/blog");
+//mount
+
+router.use("/api/v1", blog);
+
+app.listen(PORT,() =>{
+    console.log(`Server is running on port ${PORT}`);
 })
+
+const connectwithDb= require("./config/database");
+connectwithDb();
 
